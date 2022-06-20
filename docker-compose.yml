@@ -1,0 +1,20 @@
+version: '3.6'
+services:
+  shareledger-fullnode-01:
+    image: shareledger-fullnode:v1.2.0
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: shareledger-fullnode-01
+    hostname: shareledger-fullnode-01
+    cap_add:
+      - NET_ADMIN
+      - SYS_ADMIN
+    devices:
+      - /dev/net/tun
+    environment:
+      - MONIKER=fullnode-01
+      - PRUNING=nothing
+      - ZT_NETWORK=159924d630338c1b
+    volumes:
+      - ./shareledger:/shareledger
